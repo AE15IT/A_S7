@@ -22,7 +22,7 @@
         [self setImage:[UIImage imageNamed:@"btn_uncheck.png"] forState:UIControlStateNormal];
         [self addTarget:self action:@selector(checkBoxClicked) forControlEvents:UIControlEventTouchUpInside];
         
-        [self setTitle:@" Save password" forState:UIControlStateNormal];
+        [self setTitle:@" Save ID and Password" forState:UIControlStateNormal];
         [self setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         self.titleLabel.font = [UIFont systemFontOfSize:13];
     }

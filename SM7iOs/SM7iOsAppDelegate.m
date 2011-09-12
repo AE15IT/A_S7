@@ -13,10 +13,10 @@
 
 @implementation SM7iOsAppDelegate
 
-@synthesize window=_window;
-@synthesize loginCtrl=_loginCtrl;
-@synthesize homeCtrl = _homeCtrl;
+@synthesize window = _window;
+@synthesize loginCtrl = _loginCtrl;
 @synthesize settingCtrl = _settingCtrl;
+@synthesize homeCtrl = _homeCtrl;
 
 - (void)checkServerAddress
 {
@@ -117,6 +117,7 @@
     [_settingCtrl release];
 
     [_window release];
+    [_homeCtrl release];
     [super dealloc];
 }
 

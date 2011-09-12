@@ -8,28 +8,22 @@
 
 #import "IncidentViewController.h"
 #import "IncidentResultViewController.h"
-#import "SM7iOsAppDelegate.h"
-#import "Combobox.h"
 #import "CommonFuns.h"
 #import "Constants.h"
+
 
 @implementation IncidentViewController
 
 @synthesize txtSearch;
-@synthesize searchConditions;
+@synthesize lblGroup;
+@synthesize lblAssignee;
+@synthesize lblStatus;
+@synthesize groupList;
+@synthesize assigneeList;
+@synthesize statusList;
+
 
 #pragma mark -
-
-- (void)logout
-{
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure want to logout?" 
-                                                             delegate:self 
-                                                    cancelButtonTitle:@"Cancel" 
-                                               destructiveButtonTitle:@"Logout" 
-                                                    otherButtonTitles:nil];
-    [actionSheet showInView:self.view.superview];
-    [actionSheet release];
-}
 
 //TODO: Not implement yet
 - (void)search
@@ -39,42 +33,25 @@
     [childController release];
 }
 
-#pragma mark - Initialize custom views
-
-- (UILabel *)initLeftLabelWithText:(NSString *)text
-{
-    UILabel *Label = [[UILabel alloc] initWithFrame:CGRectMake(15, 2, 110, 40)];
-    Label.backgroundColor = [UIColor clearColor];
-    Label.textColor = [UIColor whiteColor];
-    Label.font = [UIFont systemFontOfSize:14]; 
-    Label.text = text;
-    
-    return Label;
-}
-
 #pragma mark - View lifecycle
 
 - (void)dealloc
 {
     [txtSearch release];
-    [searchConditions release];
-    [assignmentCombobox release];
-    [assigneeCombobox release];
-    [statusCombobox release];
+    [lblGroup release];
+    [lblAssignee release];
+    [lblStatus release];
+    [groupList release];
+    [assigneeList release];
+    [statusList release];
+
     [super dealloc];
 }
 
 - (void)viewDidLoad
 {
-    self.navigationItem.title = @"Incident Management";
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    
-    UIBarButtonItem *btnLogout = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
-                                                                  style:UIBarButtonItemStyleBordered 
-                                                                 target:self 
-                                                                 action:@selector(logout)];
-    self.navigationItem.rightBarButtonItem = btnLogout;
-    [btnLogout release];
+    self.tableView.scrollEnabled = NO;
+    self.navigationItem.title = @"My Company Incidents";
     
     UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
 	temporaryBarButtonItem.title = @"Back";
@@ -82,19 +59,22 @@
 	[temporaryBarButtonItem release];
     
     //---pseudo data---
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    NSMutableArray *groups = [[NSMutableArray alloc] initWithObjects:@"Appliction",@"Hardware",@"Network", nil];
-    NSMutableArray *operators = [[NSMutableArray alloc] initWithObjects:@"Incident.Manager",@"falcon",@"Incident.Coordinator", nil];
-    NSMutableArray *status = [[NSMutableArray alloc] initWithObjects:@"Update", @"Resloved", @"Closed", nil];
     
-    [array addObject:groups];
-    [array addObject:operators];
-    [array addObject:status];
-    [groups release];
-    [operators release];
-    [status release];
-    
-    searchConditions = array;
+    NSMutableArray *groups = [NSMutableArray array];  
+    NSMutableArray *assignees = [[NSMutableArray alloc] init];
+    NSMutableArray *statuses = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 50; i ++)
+    {
+        NSString *group = [NSString stringWithFormat:@"Group %d", i];
+        [groups addObject:group];
+        NSString *assignee = [NSString stringWithFormat:@"Assignee %d", i];
+        [assignees addObject:assignee];
+        NSString *status = [NSString stringWithFormat:@"Status %d", i];
+        [statuses addObject:status];
+    }
+    self.groupList = groups;   
+    self.assigneeList = assignees;
+    self.statusList = statuses;
    
     [super viewDidLoad];
 }
@@ -111,26 +91,6 @@
     [super didReceiveMemoryWarning];
 }
 
-//- (void)viewWillAppear:(BOOL)animated
-//{NSLog(@"viewwillappear");
-//    [super viewWillAppear:animated];
-//}
-//
-//- (void)viewDidAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
-//}
-//
-//- (void)viewWillDisappear:(BOOL)animated
-//{
-//    [super viewWillDisappear:animated];
-//}
-//
-//- (void)viewDidDisappear:(BOOL)animated
-//{
-//    [super viewDidDisappear:animated];
-//}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
@@ -141,7 +101,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -158,66 +118,28 @@
                 [cell.contentView addSubview:txtSearch];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 break;
-            case IncidentSearchRowIndexAssignment:
-            {
-                UILabel *label = [self initLeftLabelWithText:@"Assignment GP:"];
-                [cell.contentView addSubview:label];
-                [label release];
-                
-                assignmentCombobox = [[Combobox alloc] initComboboxWithFrame:CGRectMake(150, 2, 170, 40) 
-                                                               dataSource:[searchConditions objectAtIndex:(indexPath.row - 1)]];
-
-                [cell.contentView addSubview:assignmentCombobox];
-
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            case IncidentSearchRowIndexGroup:
+                cell.textLabel.text = @"Groups:";
+                cell.detailTextLabel.text = @"Please Select";
+                self.lblGroup = cell.detailTextLabel;
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 break;
-            }
             case IncidentSearchRowIndexAssignee:
-            {
-                UILabel *label = [self initLeftLabelWithText:@"Assignee:"];
-                [cell.contentView addSubview:label];
-                [label release];
-                
-                assigneeCombobox = [[Combobox alloc] initComboboxWithFrame:CGRectMake(150, 2, 170, 40) 
-                                                                dataSource:[searchConditions objectAtIndex:(indexPath.row - 1)]];
-                [cell.contentView addSubview:assigneeCombobox];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.textLabel.text = @"Assignee:";
+                cell.detailTextLabel.text = @"Please Select";
+                self.lblAssignee = cell.detailTextLabel;
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 break;
-            }
             case IncidentSearchRowIndexStatus:
-            {
-                UILabel *label = [self initLeftLabelWithText:@"Status:"];
-                [cell.contentView addSubview:label];
-                [label release];
-                
-                statusCombobox = [[Combobox alloc] initComboboxWithFrame:CGRectMake(150, 2, 170, 40) 
-                                                              dataSource:[searchConditions objectAtIndex:(indexPath.row - 1)]];
-                [cell.contentView addSubview:statusCombobox];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                break;
-            }
-//TODO: detailTextLabel.text should set to the count of incidents
-            case IncidentSearchRowIndexMyIncidents:
-                cell.textLabel.text = @"My Incidents";
-                cell.detailTextLabel.text = @"(0)";
-                cell.accessoryView = TableCell_AccessoryArrow;
-                break;
-            case IncidentSearchRowIndexMyGroupIncidents:
-                cell.textLabel.text = @"My Group's Incidents";
-                cell.detailTextLabel.text = @"(0)";
-                cell.accessoryView = TableCell_AccessoryArrow;
+                cell.textLabel.text = @"Status:";
+                cell.detailTextLabel.text = @"Please Select";
+                self.lblStatus = cell.detailTextLabel;
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 break;
             default:
                 break;
         }     
     }
-    cell.textLabel.textColor = Label_BlueColor;
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
-    cell.detailTextLabel.textColor = Label_BlueColor;
-    cell.detailTextLabel.font = [UIFont boldSystemFontOfSize:14];
-
-    tableView.separatorColor = TableView_SeparatorColor;
-    tableView.backgroundColor = TableView_BackgroundColor;
     
     return cell;
 }
@@ -229,10 +151,31 @@
     if (indexPath.row != IncidentSearchRowIndexSearch)
         [txtSearch resignFirstResponder];
     
-//TODO: implements the real My Incidents and My Group's Incidents functions
-    if (indexPath.row == IncidentSearchRowIndexMyIncidents || indexPath.row == IncidentSearchRowIndexMyGroupIncidents) {
-        [self search];
+    if (indexPath.row == IncidentSearchRowIndexGroup)
+    {
+        SelectListViewController *selectCtrl = [[SelectListViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        selectCtrl.delegate = self;
+        selectCtrl.dataSource = groupList;
+        selectCtrl.field = IncidentField_Group;
+        [self.navigationController pushViewController:selectCtrl animated:YES];
     }
+    else if (indexPath.row == IncidentSearchRowIndexAssignee)
+    {
+        SelectListViewController *selectCtrl = [[SelectListViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        selectCtrl.delegate = self;
+        selectCtrl.dataSource = assigneeList;
+        selectCtrl.field = IncidentField_Assginee;
+        [self.navigationController pushViewController:selectCtrl animated:YES];
+    }
+    else if (indexPath.row == IncidentSearchRowIndexStatus)
+    {
+        SelectListViewController *selectCtrl = [[SelectListViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        selectCtrl.delegate = self;
+        selectCtrl.dataSource = statusList;
+        selectCtrl.field = IncidentField_Status;
+        [self.navigationController pushViewController:selectCtrl animated:YES];
+    }
+        
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -255,15 +198,14 @@
     return YES;
 }
 
-#pragma mark - Action Sheet Delegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+- (void)selectFinishedWithValue:(NSString *)value forField:(NSString *)field
 {
-    if (buttonIndex != [actionSheet cancelButtonIndex])
-    {
-        SM7iOsAppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-        [delegate logOut];
-    }
+    if ([field isEqualToString:IncidentField_Group])
+        lblGroup.text = value;
+    else if ([field isEqualToString:IncidentField_Assginee])
+        lblAssignee.text = value;
+    else if ([field isEqualToString:IncidentField_Status])
+        lblStatus.text = value;
 }
 
 @end

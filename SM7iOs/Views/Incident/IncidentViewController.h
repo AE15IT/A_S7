@@ -7,24 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SelectListViewController.h"
 
 
-@class Combobox;
 
-@interface IncidentViewController : UITableViewController <UITextFieldDelegate, UIActionSheetDelegate>{
+@interface IncidentViewController : UITableViewController <UITextFieldDelegate, SelectListViewControllerDelegate>{
     UITextField *txtSearch;
-//TBD:
-    NSArray *searchConditions;
+    UILabel *lblGroup;
+    UILabel *lblAssignee;
+    UILabel *lblStatus;
     
-    Combobox *assignmentCombobox;
-    Combobox *assigneeCombobox;
-    Combobox *statusCombobox;
+    NSArray *groupList;
+    NSArray *assigneeList;
+    NSArray *statusList;   
 }
 
 @property (nonatomic, retain) UITextField *txtSearch;
-@property (nonatomic, retain) NSArray *searchConditions;
+@property (nonatomic, retain) UILabel *lblGroup;
+@property (nonatomic, retain) UILabel *lblAssignee;
+@property (nonatomic, retain) UILabel *lblStatus;
+@property (nonatomic, retain) NSArray *groupList;
+@property (nonatomic, retain) NSArray *assigneeList;
+@property (nonatomic, retain) NSArray *statusList;
 
 - (void)search;
-- (void)logout;
 
 @end

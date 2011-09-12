@@ -14,6 +14,8 @@
 @implementation SettingViewController
 
 @synthesize txtServerAddress;
+@synthesize swhAutoUpdate;
+@synthesize swhSaveID;
 @synthesize useAnimation;
 
 #pragma mark - Save & Get setting data
@@ -53,7 +55,7 @@
 	sleep(1);
 }
 
-#pragma mark - IBActions
+#pragma mark - Actions
 
 - (IBAction)done:(id)sender
 {
@@ -71,24 +73,20 @@
     }
 }
 
+- (void)swhAutoUpdateAction:(id)sender
+{
+    NSLog(@"sender :%d", [sender isOn]);
+}
+
+- (void)swhSaveIDAction:(id)sender
+{
+    NSLog(@"sender :%d", [sender isOn]);
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
-    UITextField *aTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 7, 280, 30)];
-    aTextField.borderStyle = UITextBorderStyleNone;
-    aTextField.backgroundColor = [UIColor clearColor];
-    aTextField.placeholder = @"Please set before login";
-    aTextField.keyboardType = UIKeyboardTypeURL;
-    aTextField.returnKeyType = UIReturnKeyDone;
-    aTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    aTextField.autocorrectionType = UITextAutocorrectionTypeNo;
-    aTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    aTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    aTextField.delegate = self;
-    self.txtServerAddress = aTextField;
-    [aTextField release];
-    
     [self getSettingData];
     
     //---Sometimes causes 'wait_fences: failed to receive reply: 10004003' error---
@@ -101,6 +99,8 @@
 - (void)viewDidUnload
 {
     self.txtServerAddress = nil;
+    self.swhAutoUpdate = nil;
+    self.swhSaveID = nil;
     [super viewDidUnload];
 }
 
@@ -147,47 +147,93 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return (section != 2) ? 2 : 3;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"Server Address";
+    NSString *title = nil;
+    
+    if (section == 0)
+        title = @"Service Url";
+    else if (section == 2)
+        title = @"Load";
+    
+    return title;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = nil;
+    NSUInteger section = [indexPath section];
+    NSUInteger row = [indexPath row];
     
-    if (indexPath.row == 0)
-    {
-        static NSString *TextCellID = @"TextCellID";
-        cell = [tableView dequeueReusableCellWithIdentifier:TextCellID];
-        if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TextCellID] autorelease];
-            
-            [cell.contentView addSubview:txtServerAddress];      
-            [txtServerAddress release];
-        }   
+    static NSString *CellID = @"CellID";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellID];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellID] autorelease];
     }
-    else
-    {
-        static NSString *LabelCellID = @"LabelCellID";
-        cell = [tableView dequeueReusableCellWithIdentifier:LabelCellID];
-        if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:LabelCellID] autorelease];
-            
-            cell.textLabel.textColor = [UIColor grayColor];
-            cell.textLabel.font = [UIFont systemFontOfSize:12];
-            cell.textLabel.text = @"e.g. http://yourcompany.com/sm7";
-        }         
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0f];
+    switch (section) {
+        case 0://---Service Url---
+            if (row == 0) 
+            {
+                txtServerAddress = [[UITextField alloc] initWithFrame:CGRectMake(10, 2, 280, 40)];
+                txtServerAddress.borderStyle = UITextBorderStyleNone;
+                txtServerAddress.backgroundColor = [UIColor clearColor];
+                txtServerAddress.font = [UIFont systemFontOfSize:16.0f];
+                txtServerAddress.placeholder = @"Please set before login";
+                txtServerAddress.keyboardType = UIKeyboardTypeURL;
+                txtServerAddress.returnKeyType = UIReturnKeyDone;
+                txtServerAddress.autocapitalizationType = UITextAutocapitalizationTypeNone;
+                txtServerAddress.autocorrectionType = UITextAutocorrectionTypeNo;
+                txtServerAddress.clearButtonMode = UITextFieldViewModeWhileEditing;
+                txtServerAddress.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+                txtServerAddress.delegate = self;
+                [cell.contentView addSubview:txtServerAddress];      
+                [txtServerAddress release];
+            }
+            else if (row == 1)
+            {
+                cell.textLabel.textColor = [UIColor grayColor];
+                cell.textLabel.font = [UIFont systemFontOfSize:12];
+                cell.textLabel.text = @"Contact Service Manager Administrator.";
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            break;
+        case 1://---Set Auto-Update and Save ID and Password---
+            if (row == 0) 
+            {
+                cell.textLabel.text = @"Auto Update";
+                swhAutoUpdate = [[UISwitch alloc] initWithFrame:CGRectZero];
+                [swhAutoUpdate addTarget:self action:@selector(swhAutoUpdateAction:) forControlEvents:UIControlEventValueChanged];
+                cell.accessoryView = swhAutoUpdate;
+                
+            }
+            else if (row == 1)
+            {
+                cell.textLabel.text = @"Save ID and Password";
+                swhSaveID = [[UISwitch alloc] initWithFrame:CGRectZero];
+                [swhSaveID addTarget:self action:@selector(swhSaveIDAction:) forControlEvents:UIControlEventValueChanged];
+                cell.accessoryView = swhSaveID;
+            }  
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            break; 
+        case 2://---Records should be loaded each time---
+        {
+            NSArray *array = [NSMutableArray arrayWithObjects:@"25 records each time", @"50 records each time", @"75 records each time", nil];
+            cell.textLabel.text = [array objectAtIndex:row];
+        }
+            break;
+        default:
+            break;
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
@@ -196,7 +242,20 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (indexPath.row == 0) ? 44.0f : 22.0f; 
+    NSUInteger section = [indexPath section];
+    NSUInteger row = [indexPath row];
+    CGFloat height;
+    
+    if (section == 0 && row == 1)
+            height = 22.0f;
+    else 
+        height = 44.0f;
+    return height;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - MBProgressHUDDelegate Methods

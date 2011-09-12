@@ -60,7 +60,7 @@
 
 - (void)viewDidLoad
 {
-    self.view.backgroundColor = TableView_BackgroundColor;
+//    self.view.backgroundColor = TableView_BackgroundColor;
     
     NSString *title = [NSString stringWithFormat:@"Close : %@", [dataSource objectForKey:kTicketNumberKey]];
     self.navigationItem.title = title;
@@ -86,6 +86,8 @@
     [self.view addSubview:closureCodeCombobox];
 
     [closureComment.layer setCornerRadius:8.0f];
+    [closureComment.layer setBorderWidth:1.0f];
+    [closureComment.layer setBorderColor:[[UIColor grayColor] CGColor]];
     closureComment.clipsToBounds = YES;
     closureComment.text = [dataSource objectForKey:kClosureCommentsKey];
   

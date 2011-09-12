@@ -42,11 +42,9 @@ typedef enum{
 //---Row Index of Incident---
 typedef enum{
     IncidentSearchRowIndexSearch = 0,
-    IncidentSearchRowIndexAssignment,
+    IncidentSearchRowIndexGroup,
     IncidentSearchRowIndexAssignee,
     IncidentSearchRowIndexStatus,
-    IncidentSearchRowIndexMyIncidents,
-    IncidentSearchRowIndexMyGroupIncidents
 }IncidentSearchRowIndex;
 
 typedef enum{

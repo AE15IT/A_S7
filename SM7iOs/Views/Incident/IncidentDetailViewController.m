@@ -69,17 +69,15 @@
 	self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
 	[temporaryBarButtonItem release];
     
-    self.view.backgroundColor = TableView_BackgroundColor;
-    
-    btnUpdate = [CommonFuns newActionButtonWithTitle:@"Update" frame:CGRectMake(2, 330, 103, 37)];
+    btnUpdate = [CommonFuns newActionButtonWithTitle:@"Update" frame:CGRectMake(2, 379, 103, 37)];
     [btnUpdate addTarget:self action:@selector(updateButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnUpdate];
     
-    btnResolve = [CommonFuns newActionButtonWithTitle:@"Reslove" frame:CGRectMake(107, 330, 106, 37)];
+    btnResolve = [CommonFuns newActionButtonWithTitle:@"Reslove" frame:CGRectMake(107, 379, 106, 37)];
     [btnResolve addTarget:self action:@selector(resolveButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnResolve];
     
-    btnClose = [CommonFuns newActionButtonWithTitle:@"Close" frame:CGRectMake(215, 330, 103, 37)];
+    btnClose = [CommonFuns newActionButtonWithTitle:@"Close" frame:CGRectMake(215, 379, 103, 37)];
     [btnClose addTarget:self action:@selector(closeButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnClose];
 

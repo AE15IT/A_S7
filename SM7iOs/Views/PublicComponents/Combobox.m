@@ -79,49 +79,36 @@
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     
     label.backgroundColor = [UIColor clearColor];
-    label.textColor = Label_BlueColor;
-    label.font = [UIFont systemFontOfSize:14];
-    label.text = @"<Please Select>";
+//    label.textColor = Label_BlueColor;
+    label.font = [UIFont systemFontOfSize:15];
+    label.text = @"Please Select";
     
     return label;
 }
 
-- (UIButton *)newComboButtonWithPoint:(CGPoint)point
-{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    
-    //---The image's size is 26 * 26 pixels---
-    UIImage *image = [UIImage imageNamed:@"btn_select.png"];
-    button.frame = CGRectMake(point.x, point.y, image.size.width, image.size.height);
-    [button setBackgroundImage:image forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(selectButtonTapped) 
-     forControlEvents:UIControlEventTouchUpInside];
-    
-    return button;
-}
-
-//- (void)rotateToRight
+//- (UIButton *)newComboButtonWithPoint:(CGPoint)point
 //{
-//    [UIView animateWithDuration:0.2 animations:^{
-//        comboButton.transform = CGAffineTransformMakeRotation(M_PI/2);
-//    }];
-//}
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
 //
-//- (void)rotateToLeft
-//{
-//    [UIView animateWithDuration:0.2 animations:^{
-//        comboButton.transform = CGAffineTransformMakeRotation(0);
-//    }];
+//    
+//    
+////    //---The image's size is 26 * 26 pixels---
+////    UIImage *image = [UIImage imageNamed:@"btn_select.png"];
+////    button.frame = CGRectMake(point.x, point.y, image.size.width, image.size.height);
+////    [button setBackgroundImage:image forState:UIControlStateNormal];
+//    [button addTarget:self action:@selector(selectButtonTapped) 
+//     forControlEvents:UIControlEventTouchUpInside];
+//    
+//    return button;
 //}
+
 
 #pragma mark - Actions
 
 - (void)doneButtonPressed
 {   
-//    [self rotateToLeft];
-    
     if ([selectedValue length] == 0)
-        comboLabel.text = @"<Please Select>";
+        comboLabel.text = @"Please Select";
     else
         comboLabel.text = selectedValue;
     
@@ -130,15 +117,11 @@
 
 - (void)cancelButtonPressed
 {
-//    [self rotateToLeft];
     [customActionSheet dismissWithClickedButtonIndex:1 animated:YES];
 }
 
 - (void)selectButtonTapped
 {
-    //---Performance animation---
-//    [self rotateToRight];
-    
     [customActionSheet showInView:self.window];
     [customActionSheet setBounds:CGRectMake(0, 0, 320, 500)];
 }
@@ -151,11 +134,15 @@
     if (self) {
         self.frame = frame;
         self.backgroundColor = [UIColor clearColor];
-        dataArray = data;
+        
+        dataArray = [[NSArray alloc] initWithArray:data];
         
         comboLabel = [self newComboLabelWithFrame:CGRectMake(0, 0, frame.size.width - 40, frame.size.height)];
-        comboButton = [self newComboButtonWithPoint:CGPointMake(comboLabel.frame.size.width + 3, (frame.size.height - 26)/2)];
         
+        comboButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        [comboButton addTarget:self action:@selector(selectButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+        comboButton.frame = CGRectMake(comboLabel.frame.size.width + 5, (frame.size.height - 30)/2, 30, 30);
+            
         [self addSubview:comboLabel];
         [self addSubview:comboButton];
         
@@ -197,7 +184,7 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if (row == 0)
-        return @"<Please Select>";
+        return @"Please Select";
     else
         return [@"  " stringByAppendingString:[dataArray objectAtIndex:(row - 1)]];
 }
@@ -205,7 +192,7 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     if (row == 0)
-        selectedValue = @"<Please Select>";
+        selectedValue = @"Please Select";
     else
         selectedValue = [dataArray objectAtIndex:(row - 1)];
 }

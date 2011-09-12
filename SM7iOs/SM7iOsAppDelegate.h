@@ -13,12 +13,13 @@
 
 @interface SM7iOsAppDelegate : NSObject <UIApplicationDelegate> {
 
+    UINavigationController *_homeCtrl;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet LoginViewController *loginCtrl;
-@property (nonatomic, retain) IBOutlet UITabBarController  *homeCtrl;
 @property (nonatomic, retain) IBOutlet SettingViewController *settingCtrl;
+@property (nonatomic, retain) IBOutlet UINavigationController *homeCtrl;
 
 - (void)logOn;
 - (void)logOut;

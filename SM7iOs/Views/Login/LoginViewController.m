@@ -66,7 +66,8 @@
         }
         else
         {
-            txtPassword.text = @"";
+            txtUserName.text = nil;
+            txtPassword.text = nil;
         }
         [dict release];
     }
@@ -139,7 +140,7 @@
 
 - (void)initCheckBox    
 {
-    LoginCheckBox *aCheckBox = [[LoginCheckBox alloc] initWithFrame:CGRectMake(25, 320, 110, 40)];
+    LoginCheckBox *aCheckBox = [[LoginCheckBox alloc] initWithFrame:CGRectMake(25, 320, 200, 40)];
     
     if ([shouldSave isEqualToString:@"shouldSave"] == YES)
     {

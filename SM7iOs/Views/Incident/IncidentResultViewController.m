@@ -78,26 +78,6 @@
     [super viewDidUnload];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
-
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -113,23 +93,6 @@
 }
 
 #pragma mark - Table view data source
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 12.0f;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UILabel *lblCounter = [[[UILabel alloc] init] autorelease];
-    lblCounter.font = [UIFont boldSystemFontOfSize:11];
-    lblCounter.textColor = [UIColor lightGrayColor];
-    lblCounter.textAlignment = UITextAlignmentCenter;
-    lblCounter.backgroundColor = [UIColor colorWithRed:42.0/255 green:42.0/255 blue:42.0/255 alpha:0.95];
-    
-    lblCounter.text = [NSString stringWithFormat:@"Total : %d", [dataArray count]];
-    
-    return lblCounter;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
