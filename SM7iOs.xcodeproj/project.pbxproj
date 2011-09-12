@@ -14,6 +14,7 @@
 		27CA78B413D970DC00A29C85 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA78B313D970DC00A29C85 /* main.m */; };
 		27CA78B713D970DC00A29C85 /* SM7iOsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27CA78B613D970DC00A29C85 /* SM7iOsAppDelegate.m */; };
 		27CA78BA13D970DC00A29C85 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27CA78B813D970DC00A29C85 /* MainWindow.xib */; };
+		C1004B3D141C8E8F00808AA0 /* SelectListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1004B3C141C8E8F00808AA0 /* SelectListViewController.m */; };
 		C1064FB8140DF2CB007669E8 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = C1064FA0140DF2CB007669E8 /* NSObject+SBJson.m */; };
 		C1064FB9140DF2CB007669E8 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C1064FA3140DF2CB007669E8 /* SBJsonParser.m */; };
 		C1064FBA140DF2CB007669E8 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C1064FA5140DF2CB007669E8 /* SBJsonStreamParser.m */; };
@@ -26,6 +27,7 @@
 		C1064FC1140DF2CB007669E8 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = C1064FB3140DF2CB007669E8 /* SBJsonTokeniser.m */; };
 		C1064FC2140DF2CB007669E8 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = C1064FB5140DF2CB007669E8 /* SBJsonUTF8Stream.m */; };
 		C1064FC3140DF2CB007669E8 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C1064FB7140DF2CB007669E8 /* SBJsonWriter.m */; };
+		C11725F6141C5989006DF130 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C11725F5141C5989006DF130 /* DashboardViewController.m */; };
 		C19259641414648C006440F6 /* Combobox.m in Sources */ = {isa = PBXBuildFile; fileRef = C19259631414648C006440F6 /* Combobox.m */; };
 		C1A5D3F6140B6AFA00CA9BD8 /* DataSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A5D3AD140B6AFA00CA9BD8 /* DataSourceManager.m */; };
 		C1A5D3F7140B6AFA00CA9BD8 /* WSContentExchanger.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A5D3B0140B6AFA00CA9BD8 /* WSContentExchanger.m */; };
@@ -87,6 +89,8 @@
 		27CA78B513D970DC00A29C85 /* SM7iOsAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SM7iOsAppDelegate.h; sourceTree = "<group>"; };
 		27CA78B613D970DC00A29C85 /* SM7iOsAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SM7iOsAppDelegate.m; sourceTree = "<group>"; };
 		27CA78B913D970DC00A29C85 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		C1004B3B141C8E8F00808AA0 /* SelectListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectListViewController.h; sourceTree = "<group>"; };
+		C1004B3C141C8E8F00808AA0 /* SelectListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectListViewController.m; sourceTree = "<group>"; };
 		C1064F9E140DF2CB007669E8 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		C1064F9F140DF2CB007669E8 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		C1064FA0140DF2CB007669E8 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 		C1064FB5140DF2CB007669E8 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
 		C1064FB6140DF2CB007669E8 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		C1064FB7140DF2CB007669E8 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		C11725F4141C5989006DF130 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
+		C11725F5141C5989006DF130 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
 		C19259621414648C006440F6 /* Combobox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Combobox.h; sourceTree = "<group>"; };
 		C19259631414648C006440F6 /* Combobox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Combobox.m; sourceTree = "<group>"; };
 		C1A5D3AC140B6AFA00CA9BD8 /* DataSourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSourceManager.h; sourceTree = "<group>"; };
@@ -254,6 +260,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C11725F3141C5989006DF130 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				C11725F4141C5989006DF130 /* DashboardViewController.h */,
+				C11725F5141C5989006DF130 /* DashboardViewController.m */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
 		C1A5D3AB140B6AFA00CA9BD8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,6 +326,7 @@
 		C1A5D3BF140B6AFA00CA9BD8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C11725F3141C5989006DF130 /* Dashboard */,
 				C1A5D478140B701D00CA9BD8 /* ChangesResultCell */,
 				C1A5D477140B700800CA9BD8 /* TicketCell */,
 				C1A5D3C0140B6AFA00CA9BD8 /* Change */,
@@ -403,6 +419,8 @@
 				C1A5D3F1140B6AFA00CA9BD8 /* MBProgressHUD.m */,
 				C19259621414648C006440F6 /* Combobox.h */,
 				C19259631414648C006440F6 /* Combobox.m */,
+				C1004B3B141C8E8F00808AA0 /* SelectListViewController.h */,
+				C1004B3C141C8E8F00808AA0 /* SelectListViewController.m */,
 			);
 			path = PublicComponents;
 			sourceTree = "<group>";
@@ -586,6 +604,8 @@
 				C1064FC2140DF2CB007669E8 /* SBJsonUTF8Stream.m in Sources */,
 				C1064FC3140DF2CB007669E8 /* SBJsonWriter.m in Sources */,
 				C19259641414648C006440F6 /* Combobox.m in Sources */,
+				C11725F6141C5989006DF130 /* DashboardViewController.m in Sources */,
+				C1004B3D141C8E8F00808AA0 /* SelectListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
