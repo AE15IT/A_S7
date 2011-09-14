@@ -58,7 +58,6 @@
 		C1A5D44D140B6CC700CA9BD8 /* btn_search.png in Resources */ = {isa = PBXBuildFile; fileRef = C1A5D441140B6CC700CA9BD8 /* btn_search.png */; };
 		C1A5D44E140B6CC700CA9BD8 /* btn_select.png in Resources */ = {isa = PBXBuildFile; fileRef = C1A5D442140B6CC700CA9BD8 /* btn_select.png */; };
 		C1A5D44F140B6CC700CA9BD8 /* btn_uncheck.png in Resources */ = {isa = PBXBuildFile; fileRef = C1A5D443140B6CC700CA9BD8 /* btn_uncheck.png */; };
-		C1A5D450140B6CC700CA9BD8 /* freedom.png in Resources */ = {isa = PBXBuildFile; fileRef = C1A5D444140B6CC700CA9BD8 /* freedom.png */; };
 		C1A5D451140B6CC700CA9BD8 /* icon_change.png in Resources */ = {isa = PBXBuildFile; fileRef = C1A5D445140B6CC700CA9BD8 /* icon_change.png */; };
 		C1A5D452140B6CC700CA9BD8 /* icon_incident.png in Resources */ = {isa = PBXBuildFile; fileRef = C1A5D446140B6CC700CA9BD8 /* icon_incident.png */; };
 		C1A5D453140B6CC700CA9BD8 /* img_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = C1A5D447140B6CC700CA9BD8 /* img_arrow.png */; };
@@ -75,6 +74,7 @@
 		C1A5D490140B70C200CA9BD8 /* ActionApproveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1A5D48E140B70C200CA9BD8 /* ActionApproveViewController.xib */; };
 		C1A5D494140B70C900CA9BD8 /* ActionDenyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A5D492140B70C900CA9BD8 /* ActionDenyViewController.m */; };
 		C1A5D495140B70C900CA9BD8 /* ActionDenyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1A5D493140B70C900CA9BD8 /* ActionDenyViewController.xib */; };
+		C1B8EE9D14204AAD0045E26D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C1B8EE9C14204AAD0045E26D /* Default.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,7 +163,6 @@
 		C1A5D441140B6CC700CA9BD8 /* btn_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_search.png; sourceTree = "<group>"; };
 		C1A5D442140B6CC700CA9BD8 /* btn_select.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_select.png; sourceTree = "<group>"; };
 		C1A5D443140B6CC700CA9BD8 /* btn_uncheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_uncheck.png; sourceTree = "<group>"; };
-		C1A5D444140B6CC700CA9BD8 /* freedom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = freedom.png; sourceTree = "<group>"; };
 		C1A5D445140B6CC700CA9BD8 /* icon_change.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_change.png; sourceTree = "<group>"; };
 		C1A5D446140B6CC700CA9BD8 /* icon_incident.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_incident.png; sourceTree = "<group>"; };
 		C1A5D447140B6CC700CA9BD8 /* img_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_arrow.png; sourceTree = "<group>"; };
@@ -190,6 +189,7 @@
 		C1A5D491140B70C900CA9BD8 /* ActionDenyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionDenyViewController.h; sourceTree = "<group>"; };
 		C1A5D492140B70C900CA9BD8 /* ActionDenyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionDenyViewController.m; sourceTree = "<group>"; };
 		C1A5D493140B70C900CA9BD8 /* ActionDenyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActionDenyViewController.xib; sourceTree = "<group>"; };
+		C1B8EE9C14204AAD0045E26D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -438,6 +438,7 @@
 		C1A5D43B140B6CC700CA9BD8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C1B8EE9C14204AAD0045E26D /* Default.png */,
 				C1A5D43C140B6CC700CA9BD8 /* 37x-Checkmark.png */,
 				C1A5D43D140B6CC700CA9BD8 /* btn_checked.png */,
 				C1A5D43E140B6CC700CA9BD8 /* btn_highlight.png */,
@@ -446,7 +447,6 @@
 				C1A5D441140B6CC700CA9BD8 /* btn_search.png */,
 				C1A5D442140B6CC700CA9BD8 /* btn_select.png */,
 				C1A5D443140B6CC700CA9BD8 /* btn_uncheck.png */,
-				C1A5D444140B6CC700CA9BD8 /* freedom.png */,
 				C1A5D445140B6CC700CA9BD8 /* icon_change.png */,
 				C1A5D446140B6CC700CA9BD8 /* icon_incident.png */,
 				C1A5D447140B6CC700CA9BD8 /* img_arrow.png */,
@@ -549,7 +549,6 @@
 				C1A5D44D140B6CC700CA9BD8 /* btn_search.png in Resources */,
 				C1A5D44E140B6CC700CA9BD8 /* btn_select.png in Resources */,
 				C1A5D44F140B6CC700CA9BD8 /* btn_uncheck.png in Resources */,
-				C1A5D450140B6CC700CA9BD8 /* freedom.png in Resources */,
 				C1A5D451140B6CC700CA9BD8 /* icon_change.png in Resources */,
 				C1A5D452140B6CC700CA9BD8 /* icon_incident.png in Resources */,
 				C1A5D453140B6CC700CA9BD8 /* img_arrow.png in Resources */,
@@ -557,6 +556,7 @@
 				C1A5D482140B704600CA9BD8 /* ChangesResultCell.xib in Resources */,
 				C1A5D490140B70C200CA9BD8 /* ActionApproveViewController.xib in Resources */,
 				C1A5D495140B70C900CA9BD8 /* ActionDenyViewController.xib in Resources */,
+				C1B8EE9D14204AAD0045E26D /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
