@@ -61,7 +61,6 @@
 {
     [txtServerAddress resignFirstResponder];
     
-    
     if (useAnimation == YES)//---From Login view---
     {
         [self dismissModalViewControllerAnimated:YES];
