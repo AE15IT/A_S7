@@ -130,6 +130,7 @@
     
     cell.textLabel.font = [UIFont boldSystemFontOfSize:15.0f];
     cell.textLabel.text = [[dashboardList objectAtIndex:section] objectAtIndex:row];
+    //cell.indentationLevel = 2;
 
 //TODO: Calculate the actual number.
     switch (section) {
@@ -152,7 +153,9 @@
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
+    
 }
+
 
 #pragma mark - Table view delegate
 

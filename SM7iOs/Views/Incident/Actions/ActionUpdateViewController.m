@@ -58,19 +58,19 @@
 
 - (void)viewDidLoad
 {
-    self.view.backgroundColor = [UIColor colorWithRed:29.0/255 green:30.0/255 blue:30.0/255 alpha:1.0];
-    
-    NSString *title = [NSString stringWithFormat:@"Update : %@", [dataSource objectForKey:kTicketNumberKey]];
-    self.navigationItem.title = title;
+    self.navigationItem.title = @"Update Incident";
     
     ticketNumberLabel.text = [dataSource objectForKey:kTicketNumberKey];
     
-    btnUpdate = [CommonFuns newActionButtonWithTitle:@"Update" frame:CGRectMake(40, 260, 240, 37)];
+    btnUpdate = [CommonFuns newActionButtonWithTitle:@"Save" frame:CGRectMake(40, 260, 240, 37)];
     [btnUpdate addTarget:self action:@selector(updateButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [btnUpdate.layer setCornerRadius:10.0f];
     btnUpdate.clipsToBounds = YES;
     [self.view addSubview:btnUpdate];
     
+    [journalUpdate.layer setCornerRadius:8.0f];
+    [journalUpdate.layer setBorderWidth:1.0f];
+    [journalUpdate.layer setBorderColor:[[UIColor grayColor] CGColor]];
     [journalUpdate.layer setCornerRadius:8.0f];
     journalUpdate.clipsToBounds = YES;
     journalUpdate.text = [dataSource objectForKey:kJournalUpdateKey];

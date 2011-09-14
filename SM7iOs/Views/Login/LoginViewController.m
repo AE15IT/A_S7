@@ -12,7 +12,7 @@
 #import "LoginUserData.h"
 #import "SettingViewController.h"
 
-#import "SBJson.h"
+
 
 #define kUserNameKey    @"username"
 #define kPasswordKey    @"password"
@@ -124,10 +124,9 @@
 - (IBAction)setting
 {
     SettingViewController *settingViewController = [[SettingViewController alloc] init];
-    [self.view addSubview:settingViewController.view];
+    [self.view addSubview:settingViewController.view];//---To avoid two stage rotation error---
     settingViewController.useAnimation = YES;
-    [self presentModalViewController:settingViewController animated:YES];
-    
+    [self presentModalViewController:settingViewController animated:YES];    
 }
 
 - (IBAction)backgroundTapped

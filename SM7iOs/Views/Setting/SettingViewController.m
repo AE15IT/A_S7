@@ -10,12 +10,12 @@
 #import "SM7iOsAppDelegate.h"
 #import "LoginUserData.h"
 #import "Constants.h"
+#import "SelectListViewController.h"
 
 @implementation SettingViewController
 
 @synthesize txtServerAddress;
 @synthesize swhAutoUpdate;
-@synthesize swhSaveID;
 @synthesize useAnimation;
 
 #pragma mark - Save & Get setting data
@@ -57,12 +57,12 @@
 
 #pragma mark - Actions
 
-- (IBAction)done:(id)sender
+- (void)dismissSetting
 {
     [txtServerAddress resignFirstResponder];
-    [self saveSettingData];
     
-    if (useAnimation == YES)
+    
+    if (useAnimation == YES)//---From Login view---
     {
         [self dismissModalViewControllerAnimated:YES];
     }
@@ -73,12 +73,18 @@
     }
 }
 
-- (void)swhAutoUpdateAction:(id)sender
+- (IBAction)done:(id)sender
 {
-    NSLog(@"sender :%d", [sender isOn]);
+    [self saveSettingData];
+    [self dismissSetting];
 }
 
-- (void)swhSaveIDAction:(id)sender
+- (IBAction)cancel:(id)sender
+{
+    [self dismissSetting];
+}
+
+- (void)swhAutoUpdateAction:(id)sender
 {
     NSLog(@"sender :%d", [sender isOn]);
 }
@@ -100,7 +106,7 @@
 {
     self.txtServerAddress = nil;
     self.swhAutoUpdate = nil;
-    self.swhSaveID = nil;
+//    self.swhSaveID = nil;
     [super viewDidUnload];
 }
 
@@ -147,12 +153,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return (section != 2) ? 2 : 3;
+    return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -161,8 +167,8 @@
     
     if (section == 0)
         title = @"Service Url";
-    else if (section == 2)
-        title = @"Load";
+    else
+        title = @"Others";
     
     return title;
 }
@@ -176,7 +182,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellID];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellID] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellID] autorelease];
     }
     cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0f];
     switch (section) {
@@ -206,35 +212,26 @@
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
-        case 1://---Set Auto-Update and Save ID and Password---
+        case 1://---Others---
             if (row == 0) 
             {
-                cell.textLabel.text = @"Auto Update";
+                cell.textLabel.text = @"Auto Check Update";
                 swhAutoUpdate = [[UISwitch alloc] initWithFrame:CGRectZero];
                 [swhAutoUpdate addTarget:self action:@selector(swhAutoUpdateAction:) forControlEvents:UIControlEventValueChanged];
                 cell.accessoryView = swhAutoUpdate;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
             }
             else if (row == 1)
             {
-                cell.textLabel.text = @"Save ID and Password";
-                swhSaveID = [[UISwitch alloc] initWithFrame:CGRectZero];
-                [swhSaveID addTarget:self action:@selector(swhSaveIDAction:) forControlEvents:UIControlEventValueChanged];
-                cell.accessoryView = swhSaveID;
-            }  
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.textLabel.text = @"Display";
+                cell.detailTextLabel.text = @"20 records on each page";
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
             break; 
-        case 2://---Records should be loaded each time---
-        {
-            NSArray *array = [NSMutableArray arrayWithObjects:@"25 records each time", @"50 records each time", @"75 records each time", nil];
-            cell.textLabel.text = [array objectAtIndex:row];
-        }
-            break;
         default:
             break;
-    }
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+    }  
     return cell;
 }
 
@@ -250,11 +247,15 @@
             height = 22.0f;
     else 
         height = 44.0f;
+    
     return height;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 1 && indexPath.row == 1) {
+//TODO: Select 
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

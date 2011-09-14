@@ -25,7 +25,7 @@
 
 - (IBAction)backgroundTapped
 {
-    closureComment.frame = CGRectMake(20, 141, 280, 145);
+    closureComment.frame = CGRectMake(20, 141, 280, 160);
     [closureComment resignFirstResponder];
 }
 
@@ -60,12 +60,9 @@
 
 - (void)viewDidLoad
 {
-//    self.view.backgroundColor = TableView_BackgroundColor;
+    self.navigationItem.title = @"Close Incident";
     
-    NSString *title = [NSString stringWithFormat:@"Close : %@", [dataSource objectForKey:kTicketNumberKey]];
-    self.navigationItem.title = title;
-    
-    btnClose = [CommonFuns newActionButtonWithTitle:@"Close" frame:CGRectMake(40, 308, 240, 37)];
+    btnClose = [CommonFuns newActionButtonWithTitle:@"Close" frame:CGRectMake(40, 340, 240, 37)];
     [btnClose addTarget:self action:@selector(closeButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [btnClose.layer setCornerRadius:10.0f];
     btnClose.clipsToBounds = YES;

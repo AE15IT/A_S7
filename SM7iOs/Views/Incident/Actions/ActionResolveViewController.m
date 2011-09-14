@@ -26,7 +26,7 @@
 
 - (IBAction)backgroundTapped
 {
-    closureComment.frame = CGRectMake(20, 141, 280, 145);
+    closureComment.frame = CGRectMake(20, 141, 280, 160);
     [closureComment resignFirstResponder];
 }
 
@@ -61,14 +61,11 @@
 
 - (void)viewDidLoad
 {
-    self.view.backgroundColor = TableView_BackgroundColor;
-    
-    NSString *title = [NSString stringWithFormat:@"Resolve : %@", [dataSource objectForKey:kTicketNumberKey]];
-    self.navigationItem.title = title;
+    self.navigationItem.title = @"Resolve Incident";
 
     ticketNumberLabel.text = [dataSource objectForKey:kTicketNumberKey];
     
-    btnResolve = [CommonFuns newActionButtonWithTitle:@"Resolve" frame:CGRectMake(40, 308, 240, 37)];
+    btnResolve = [CommonFuns newActionButtonWithTitle:@"Resolve" frame:CGRectMake(40, 340, 240, 37)];
     [btnResolve addTarget:self action:@selector(resolveButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [btnResolve.layer setCornerRadius:10.0f];
     btnResolve.clipsToBounds = YES;
@@ -86,6 +83,9 @@
     closureCodeCombobox.comboLabel.text = [dataSource objectForKey:kClosureCodeKey];
     [self.view addSubview:closureCodeCombobox];
   
+    [closureComment.layer setCornerRadius:8.0f];
+    [closureComment.layer setBorderWidth:1.0f];
+    [closureComment.layer setBorderColor:[[UIColor grayColor] CGColor]];
     [closureComment.layer setCornerRadius:8.0f];
     closureComment.clipsToBounds = YES;
     closureComment.text = [dataSource objectForKey:kClosureCommentsKey];

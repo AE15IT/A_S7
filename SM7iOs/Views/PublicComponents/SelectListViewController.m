@@ -72,7 +72,7 @@
     }
     
     if (indexPath.row == 0)
-        cell.textLabel.text = @"Please Select";
+        cell.textLabel.text = @"None";
     else
         cell.textLabel.text = [dataSource objectAtIndex:(indexPath.row - 1)];
     
@@ -85,16 +85,15 @@
 {
     NSString *selectedValue = nil;
     
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    selectedValue = cell.textLabel.text;
-    [self.delegate selectFinishedWithValue:selectedValue forField:field];
-    
+    if (indexPath.row == 0)
+        selectedValue = @"Please Select";
+    else
+    {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        selectedValue = cell.textLabel.text;
+        [self.delegate selectFinishedWithValue:selectedValue forField:field];
+    }
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return (indexPath.row == 0) ? 1 : 2;
 }
 
 @end

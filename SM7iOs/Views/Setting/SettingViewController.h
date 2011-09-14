@@ -14,7 +14,6 @@
 {
     UITextField *txtServerAddress;
     UISwitch *swhAutoUpdate;
-    UISwitch *swhSaveID;
     MBProgressHUD *HUD;
     
     BOOL useAnimation;
@@ -22,10 +21,10 @@
 
 @property (nonatomic, retain) UITextField *txtServerAddress;
 @property (nonatomic, retain) UISwitch *swhAutoUpdate;
-@property (nonatomic, retain) UISwitch *swhSaveID;
 @property (nonatomic, assign) BOOL useAnimation;
 
 - (IBAction)done:(id)sender;
+- (IBAction)cancel:(id)sender;
 - (void)testServerAddress;
 
 @end

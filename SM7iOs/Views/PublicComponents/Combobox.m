@@ -26,7 +26,7 @@
                                                     cancelButtonTitle:nil
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:nil];
-    actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+//    actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
     actionSheet.backgroundColor = [UIColor clearColor];
     
     UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
@@ -79,8 +79,7 @@
     UILabel *label = [[UILabel alloc] initWithFrame:frame];
     
     label.backgroundColor = [UIColor clearColor];
-//    label.textColor = Label_BlueColor;
-    label.font = [UIFont systemFontOfSize:15];
+    label.font = [UIFont systemFontOfSize:14];
     label.text = @"Please Select";
     
     return label;
@@ -184,9 +183,9 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if (row == 0)
-        return @"Please Select";
+        return @"None";
     else
-        return [@"  " stringByAppendingString:[dataArray objectAtIndex:(row - 1)]];
+        return [dataArray objectAtIndex:(row - 1)];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component

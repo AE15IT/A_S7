@@ -46,19 +46,16 @@
 
 - (void)viewDidLoad
 {
-    self.tableView.separatorColor = TableView_SeparatorColor;
-    self.tableView.backgroundColor = TableView_BackgroundColor;
-
-    self.navigationItem.title = @"Search Result";
+    self.navigationItem.title = @"My Company Incidents(100)";
     
     //---pseudo data---
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for (int i = 0; i < 99; i++) {
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
         [dict setObject:[NSString stringWithFormat:@"IM100%d",i] forKey:kTicketNumberKey];
-        [dict setObject:@"Application" forKey:kAssignmentGPKey];
+        [dict setObject:@"Office Supplies(North America)" forKey:kAssignmentGPKey];
         [dict setObject:@"2 - High" forKey:kPriorityKey];
-        [dict setObject:@"Incident.Manager" forKey:kAssigneeKey];
+        [dict setObject:@"Incident.Coordinator" forKey:kAssigneeKey];
         [dict setObject:@"Work In Progress" forKey:kStatusKey];
         [dict setObject:@"Virus scan report Multiple Virusse.test if it can display" forKey:kTitleKey];
         [dict setObject:@"Virus scan report Multiple Virusse. TTTTTTTTTTTTTTTTTTTTTTTT" forKey:kDescriptionKey];
@@ -107,43 +104,43 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 
-        UILabel *label1 = [self newLabelWithFrame:CGRectMake(20, 12, 110, 20) 
-                                          textColor:[UIColor whiteColor] 
-                                               font:[UIFont boldSystemFontOfSize:26] 
+        UILabel *label1 = [self newLabelWithFrame:CGRectMake(25, 5, 100, 18) 
+                                          textColor:[UIColor blackColor] 
+                                               font:[UIFont boldSystemFontOfSize:20] 
                                       textAlignment:UITextAlignmentLeft 
                                                 tag:kTicketNumberTag];
         [cell.contentView addSubview:label1];
 
-        UILabel *label2 = [self newLabelWithFrame:CGRectMake(180, 12, 110, 20)
-                                      textColor:[UIColor colorWithRed:59.0/255 green:186.0/255 blue:251.0/255 alpha:1.0] 
+        UILabel *label2 = [self newLabelWithFrame:CGRectMake(125, 5, 165, 18)
+                                        textColor:[UIColor blackColor]
                                            font:[UIFont boldSystemFontOfSize:14] 
                                   textAlignment:UITextAlignmentRight
                                             tag:kPriorityTag];
         [cell.contentView addSubview:label2];
         
-        UILabel *label3 = [self newLabelWithFrame:CGRectMake(20, 38, 150, 20) 
-                                        textColor:[UIColor whiteColor] 
+        UILabel *label3 = [self newLabelWithFrame:CGRectMake(25, 23, 270, 18) 
+                                        textColor:[UIColor blackColor] 
                                              font:[UIFont systemFontOfSize:13] 
                                     textAlignment:UITextAlignmentLeft 
                                               tag:kAssignmentGPTag];
         [cell.contentView addSubview:label3];
         
-        UILabel *label4 = [self newLabelWithFrame:CGRectMake(180, 38, 110, 20) 
-                                      textColor:[UIColor whiteColor] 
+        UILabel *label4 = [self newLabelWithFrame:CGRectMake(25, 41, 270, 18) 
+                                      textColor:[UIColor blackColor] 
                                            font:[UIFont systemFontOfSize:13] 
-                                  textAlignment:UITextAlignmentRight 
+                                  textAlignment:UITextAlignmentLeft
                                             tag:kAssigneeTag];
         [cell.contentView addSubview:label4];
         
-        UILabel *label5 = [self newLabelWithFrame:CGRectMake(20, 64, 110, 20) 
-                                    textColor:[UIColor colorWithRed:59.0/255 green:186.0/255 blue:251.0/255 alpha:1.0] 
+        UILabel *label5 = [self newLabelWithFrame:CGRectMake(25, 59, 270, 18) 
+                                    textColor:[UIColor blackColor]
                                          font:[UIFont systemFontOfSize:13] 
                                 textAlignment:UITextAlignmentLeft 
                                           tag:kStatusTag];
         [cell.contentView addSubview:label5];
         
-        UILabel *label6 = [self newLabelWithFrame:CGRectMake(20, 90, 280, 20) 
-                                         textColor:[UIColor whiteColor] 
+        UILabel *label6 = [self newLabelWithFrame:CGRectMake(25, 77, 270, 18) 
+                                         textColor:[UIColor blackColor] 
                                               font:[UIFont systemFontOfSize:13] 
                                      textAlignment:UITextAlignmentLeft 
                                                tag:kDescriptionTag];
@@ -159,13 +156,13 @@
     NSDictionary *dict = [dataArray objectAtIndex:indexPath.row];
     
     ticketNumberLabel.text = [dict objectForKey:kTicketNumberKey];
-    priorityLabel.text = [dict objectForKey:kPriorityKey];
+    priorityLabel.text = [NSString stringWithFormat:@"(%@)",[dict objectForKey:kPriorityKey]];
     assignmentLabel.text = [dict objectForKey:kAssignmentGPKey];
     assigneeLabel.text = [dict objectForKey:kAssigneeKey];
     statusLabel.text = [dict objectForKey:kStatusKey];
     descriptionLabel.text = [dict objectForKey:kDescriptionKey];
     
-    cell.accessoryView = TableCell_AccessoryArrow;    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
@@ -190,7 +187,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 122.0f;
+    return 100.0f;
 }
 
 @end

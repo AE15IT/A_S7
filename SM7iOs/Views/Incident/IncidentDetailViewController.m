@@ -63,7 +63,8 @@
 
 - (void)viewDidLoad
 {
-    self.navigationItem.title = [NSString stringWithFormat:@"%@ Detail",[tableDataSource objectForKey:kTicketNumberKey]];
+    self.navigationItem.title = @"Incident Detail";
+    
     UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
 	temporaryBarButtonItem.title = @"Back";
 	self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
@@ -113,13 +114,13 @@
         
         UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(18, 5, 284, 16)];
         label1.backgroundColor = [UIColor clearColor];
-        label1.textColor = [UIColor lightGrayColor];
+        label1.textColor = [UIColor darkGrayColor];
         label1.font = [UIFont italicSystemFontOfSize:13];
         label1.tag = kKeyLabelTag;
         
         UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(32, 24, 256, 20)];
         label2.backgroundColor = [UIColor clearColor];
-        label2.textColor = [UIColor whiteColor];
+        label2.textColor = [UIColor blackColor];
         label2.font = [UIFont systemFontOfSize:14];
         label2.tag = kValueLabelTag;
 
@@ -190,10 +191,7 @@
     }
     else
         cellHeight = 49.0;
-
-    tableView.separatorColor = [UIColor colorWithRed:36.0/255 green:37.0/255 blue:37.0/255 alpha:1.0];
-    tableView.backgroundColor = [UIColor colorWithRed:29.0/255 green:30.0/255 blue:30.0/255 alpha:1.0];
-
+    
     cell.selectionStyle = UITableViewCellEditingStyleNone;
     return cell;
 }
