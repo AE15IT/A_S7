@@ -9,13 +9,10 @@
 #import "LoginViewController.h"
 #import "SM7iOsAppDelegate.h"
 #import "LoginCheckBox.h"
-#import "LoginUserData.h"
 #import "SettingViewController.h"
+#import "UserInfo.h"
 
 
-
-#define kUserNameKey    @"username"
-#define kPasswordKey    @"password"
 
 @implementation LoginViewController
 
@@ -23,7 +20,6 @@
 @synthesize txtPassword;
 @synthesize btnLogin;
 @synthesize btnSetting;
-@synthesize shouldSave;
 @synthesize checkBox;
 
 #pragma mark - Communicate with server
@@ -40,35 +36,37 @@
 - (void)saveLoginData
 {    
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    [dict setObject:(txtUserName.text ? txtUserName.text : @"") forKey:kUserNameKey];
-    [dict setObject:(txtPassword.text ? txtPassword.text : @"") forKey:kPasswordKey];
-    [dict setObject:(checkBox.isChecked ? @"shouldSave" : @"shouldNotSave") forKey:kCheckBoxKey];
-    [dict writeToFile:[LoginUserData dataFilePath:kLoginData] atomically:YES];
+    
+    if (checkBox.isChecked == YES)
+    {
+        [dict setObject:txtUserName.text ? txtUserName.text : @"" forKey:kUserNameKey];
+        [dict setObject:txtPassword.text ? txtPassword.text : @"" forKey:kPassWordKey];
+    }
+    else
+    {
+        [dict setObject:@"" forKey:kUserNameKey];
+        [dict setObject:@"" forKey:kPassWordKey];
+    } 
+    
+    [dict setObject:[NSNumber numberWithBool:checkBox.isChecked] forKey:kCheckBoxKey];
+    [dict writeToFile:[UserInfo filePath] atomically:YES];
     [dict release];
 }
 
 - (void)getLoginData
 {
-    //---get from plist file---
-    NSString *filePath = [LoginUserData dataFilePath:kLoginData];
+    //---get login data from plist file---
+    NSString *filePath = [UserInfo filePath];
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) 
     {
         NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:filePath];
         
         txtUserName.text = [dict objectForKey:kUserNameKey];
+        txtPassword.text = [dict objectForKey:kPassWordKey];
         
-        shouldSave = [NSMutableString stringWithString:[dict objectForKey:kCheckBoxKey]];
-        
-        if ([shouldSave isEqualToString:@"shouldSave"])
-        {
-            txtPassword.text = [dict objectForKey:kPasswordKey];
-        }
-        else
-        {
-            txtUserName.text = nil;
-            txtPassword.text = nil;
-        }
+        shouldChecked = [[dict objectForKey:kCheckBoxKey] boolValue];
+
         [dict release];
     }
 }
@@ -105,7 +103,8 @@
 
 #pragma mark - IBActions
 
-- (IBAction)login{
+- (IBAction)login
+{
     [txtUserName resignFirstResponder];
     [txtPassword resignFirstResponder];
     
@@ -141,14 +140,14 @@
 {
     LoginCheckBox *aCheckBox = [[LoginCheckBox alloc] initWithFrame:CGRectMake(25, 320, 200, 40)];
     
-    if ([shouldSave isEqualToString:@"shouldSave"] == YES)
+    if (shouldChecked == YES)
     {
         aCheckBox.isChecked = YES; //---check---
         [aCheckBox setImage:[UIImage imageNamed:@"btn_checked.png"] forState:UIControlStateNormal];
     }
     checkBox = aCheckBox;
     [self.view addSubview:checkBox];
-    [checkBox release];
+    [aCheckBox release];
 }
 
 - (UITextField *)initTextFieldWithFrame: (CGRect)aFrame 
@@ -176,8 +175,6 @@
 - (void)viewDidLoad
 {    
     [super viewDidLoad];
-    
-    self.view.backgroundColor = [UIColor colorWithRed:230.0/255 green:230.0/255 blue:230.0/255 alpha:1.0];
  
     txtUserName = [self initTextFieldWithFrame:CGRectMake(25, 230, 270, 38) 
                                    placeholder:@"User name" 
@@ -192,9 +189,9 @@
                                secureTextEntry:YES];
     [self.view addSubview:txtPassword];
     [txtPassword release];
-    
+ 
     [self getLoginData];
-
+    
     [self initCheckBox];
     
     //---Register for keyboard notification---
@@ -232,7 +229,6 @@
     [txtPassword release];
     [btnLogin release];
     [btnSetting release];
-    [shouldSave release];
     [checkBox release];
     [super dealloc];
 }

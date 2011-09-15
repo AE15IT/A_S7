@@ -18,7 +18,7 @@
     UIButton *btnSetting;
     
     //---Indicate should save password or not---
-    NSString *shouldSave;
+    BOOL shouldChecked;
     
     LoginCheckBox *checkBox;
     MBProgressHUD *HUD;
@@ -28,7 +28,6 @@
 @property (nonatomic, retain) UITextField *txtPassword;
 @property (nonatomic, retain) IBOutlet UIButton *btnLogin;
 @property (nonatomic, retain) IBOutlet UIButton *btnSetting;
-@property (nonatomic, retain) NSString *shouldSave;
 @property (nonatomic, retain) LoginCheckBox *checkBox;
 
 - (IBAction)login;

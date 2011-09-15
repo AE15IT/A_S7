@@ -9,7 +9,7 @@
 #import "SM7iOsAppDelegate.h"
 #import "LoginViewController.h"
 #import "SettingViewController.h"
-#import "LoginUserData.h"
+#import "UserInfo.h"
 
 @implementation SM7iOsAppDelegate
 
@@ -20,32 +20,28 @@
 
 - (void)checkServerAddress
 {
-    NSString *filePath = [LoginUserData dataFilePath:kSettingData];
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) 
-    {
-        NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:filePath];
-        
-        if ([[dict objectForKey:kServerAddressKey] length] == 0)
-        {
-            //---jump to setting view to set server address first---
-            [self.window setRootViewController:self.settingCtrl];
-        }
-        else
-        {
-            [self.window setRootViewController:self.loginCtrl];
-        }
-        
-        [dict release];
-    }
-    else //---plist file does not exist---
-    {
-        [self.window setRootViewController:self.settingCtrl];
-    }
+    [self.window setRootViewController:self.loginCtrl];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //---Initialize a plist file of userInfo when app launched the first time---
+    //
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[UserInfo filePath]] == NO)
+    {
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+        
+        [dict setObject:@"" forKey:kUserNameKey];
+        [dict setObject:@"" forKey:kPassWordKey];
+        [dict setObject:[NSNumber numberWithBool:NO] forKey:kCheckBoxKey];
+        [dict setObject:@"defaultUrl" forKey:kServerUrlKey];
+        [dict setObject:[NSNumber numberWithBool:YES] forKey:kAutoUpdateKey];
+        [dict setObject:[NSNumber numberWithInt:20] forKey:kDisplayKey];
+        
+        [dict writeToFile:[UserInfo filePath] atomically:YES];
+        [dict release];
+    }
+    
     //---check if server address exist or not---
     [self checkServerAddress];
 

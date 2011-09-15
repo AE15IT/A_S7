@@ -14,6 +14,7 @@
 @synthesize delegate = _delegate;
 @synthesize dataSource;
 @synthesize field;
+@synthesize atLeastOne;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -59,7 +60,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [dataSource count] + 1; //---Row 0 set to "Please Select"---
+    if (atLeastOne == YES)
+        return [dataSource count];
+    else
+        return [dataSource count] + 1; //---Row 0 set to "Please Select"---
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -70,12 +74,15 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-    
-    if (indexPath.row == 0)
-        cell.textLabel.text = @"None";
+    if (atLeastOne == YES)
+        cell.textLabel.text = [dataSource objectAtIndex:indexPath.row];
     else
-        cell.textLabel.text = [dataSource objectAtIndex:(indexPath.row - 1)];
-    
+    {
+        if (indexPath.row == 0)
+            cell.textLabel.text = @"None";
+        else
+            cell.textLabel.text = [dataSource objectAtIndex:(indexPath.row - 1)];
+    }
     return cell;
 }
 
@@ -84,16 +91,22 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *selectedValue = nil;
-    
-    if (indexPath.row == 0)
-        selectedValue = @"Please Select";
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (atLeastOne == YES)
+    {
+        selectedValue = cell.textLabel.text;
+        [self dismissModalViewControllerAnimated:YES];
+    }
     else
     {
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        selectedValue = cell.textLabel.text;
-        [self.delegate selectFinishedWithValue:selectedValue forField:field];
+        if (indexPath.row == 0)
+            selectedValue = @"Please Select";
+        else
+            selectedValue = cell.textLabel.text;
+        
+        [self.navigationController popViewControllerAnimated:YES];
     }
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.delegate selectFinishedWithValue:selectedValue forField:field];
 }
 
 @end

@@ -8,14 +8,15 @@
 
 #import "SettingViewController.h"
 #import "SM7iOsAppDelegate.h"
-#import "LoginUserData.h"
 #import "Constants.h"
 #import "SelectListViewController.h"
+#import "UserInfo.h"
 
 @implementation SettingViewController
 
 @synthesize txtServerAddress;
 @synthesize swhAutoUpdate;
+@synthesize lblDisplay;
 @synthesize useAnimation;
 
 #pragma mark - Save & Get setting data
@@ -23,20 +24,26 @@
 - (void)saveSettingData
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    [dict setObject:(txtServerAddress.text ? txtServerAddress.text : @"") forKey:kServerAddressKey];
-    [dict writeToFile:[LoginUserData dataFilePath:kSettingData] atomically:YES];
+    
+    [dict setObject:(txtServerAddress.text ? txtServerAddress.text : @"") forKey:kServerUrlKey];
+    [dict setObject:[NSNumber numberWithBool:swhAutoUpdate.on] forKey:kAutoUpdateKey];
+    
+    [dict writeToFile:[UserInfo filePath] atomically:YES];
     [dict release];
 }
 
 - (void)getSettingData
 {
     //---get from plist file---
-    NSString *filePath = [LoginUserData dataFilePath:kSettingData];
+    NSString *filePath = [UserInfo filePath];
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) 
     {
         NSDictionary *dict = [[NSDictionary alloc] initWithContentsOfFile:filePath];
-        txtServerAddress.text = [dict objectForKey:kServerAddressKey];
+        
+        txtServerAddress.text = [dict objectForKey:kServerUrlKey];
+        switchOn = [[dict objectForKey:kAutoUpdateKey] boolValue];
+
         [dict release];
     }
 }
@@ -105,7 +112,7 @@
 {
     self.txtServerAddress = nil;
     self.swhAutoUpdate = nil;
-//    self.swhSaveID = nil;
+    self.lblDisplay = nil;
     [super viewDidUnload];
 }
 
@@ -216,6 +223,7 @@
             {
                 cell.textLabel.text = @"Auto Check Update";
                 swhAutoUpdate = [[UISwitch alloc] initWithFrame:CGRectZero];
+                [swhAutoUpdate setOn:switchOn animated:YES];
                 [swhAutoUpdate addTarget:self action:@selector(swhAutoUpdateAction:) forControlEvents:UIControlEventValueChanged];
                 cell.accessoryView = swhAutoUpdate;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -225,6 +233,7 @@
             {
                 cell.textLabel.text = @"Display";
                 cell.detailTextLabel.text = @"20 records on each page";
+                lblDisplay = cell.detailTextLabel;
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }
             break; 
@@ -254,8 +263,22 @@
 {
     if (indexPath.section == 1 && indexPath.row == 1) {
 //TODO: Select 
+        SelectListViewController *selectCtrl = [[SelectListViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        selectCtrl.delegate = self;
+        selectCtrl.atLeastOne = YES; //---Must select one---
+        
+        NSArray *list = [NSArray arrayWithObjects:@"5 records on each page", @"10 records on each page", @"20 records on each page", @"50 records on each page", @"100 records on each page", nil];
+        selectCtrl.dataSource = list;
+        
+        [self presentModalViewController:selectCtrl animated:YES];
+        [selectCtrl release];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)selectFinishedWithValue:(NSString *)value forField:(NSString *)field
+{
+    lblDisplay.text = value;
 }
 
 #pragma mark - MBProgressHUDDelegate Methods

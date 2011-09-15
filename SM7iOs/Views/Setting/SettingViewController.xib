@@ -58,16 +58,16 @@
 							<object class="IBUINavigationItem" id="672904350">
 								<reference key="IBUINavigationBar" ref="278182711"/>
 								<string key="IBUITitle">Settings</string>
-								<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="993717">
-									<string key="IBUITitle">Done</string>
-									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-									<int key="IBUIStyle">2</int>
-									<reference key="IBUINavigationItem" ref="672904350"/>
-								</object>
-								<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="50436654">
+								<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="50436654">
 									<string key="IBUITitle">Cancel</string>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 									<int key="IBUIStyle">1</int>
+									<reference key="IBUINavigationItem" ref="672904350"/>
+								</object>
+								<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="993717">
+									<string key="IBUITitle">Done</string>
+									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+									<int key="IBUIStyle">2</int>
 									<reference key="IBUINavigationItem" ref="672904350"/>
 								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

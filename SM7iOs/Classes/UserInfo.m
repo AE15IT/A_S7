@@ -1,20 +1,21 @@
 //
-//  LoginUserData.m
+//  UserInfo.m
 //  SM7iOs
 //
-//  Created by Black on 11-7-29.
+//  Created by Black on 11-9-15.
 //  Copyright 2011年 __MyCompanyName__. All rights reserved.
 //
 
-#import "LoginUserData.h"
+#import "UserInfo.h"
 
-@implementation LoginUserData
 
-+ (NSString *) dataFilePath: (NSString *)plistName
+@implementation UserInfo
+
++ (NSString *)filePath
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentDirectory = [paths objectAtIndex:0];
-    return [documentDirectory stringByAppendingPathComponent:plistName];
+    return [documentDirectory stringByAppendingPathComponent:@"userInfo.plist"];
 }
 
 @end
