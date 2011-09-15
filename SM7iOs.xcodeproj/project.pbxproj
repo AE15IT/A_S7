@@ -28,6 +28,7 @@
 		C1064FC2140DF2CB007669E8 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = C1064FB5140DF2CB007669E8 /* SBJsonUTF8Stream.m */; };
 		C1064FC3140DF2CB007669E8 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C1064FB7140DF2CB007669E8 /* SBJsonWriter.m */; };
 		C11725F6141C5989006DF130 /* DashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C11725F5141C5989006DF130 /* DashboardViewController.m */; };
+		C1906CFF1421A610002A0813 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C1906CFE1421A610002A0813 /* UserInfo.m */; };
 		C19259641414648C006440F6 /* Combobox.m in Sources */ = {isa = PBXBuildFile; fileRef = C19259631414648C006440F6 /* Combobox.m */; };
 		C1952C4C14207987006320A0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C1952C4B14207987006320A0 /* Default.png */; };
 		C1A5D3F6140B6AFA00CA9BD8 /* DataSourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A5D3AD140B6AFA00CA9BD8 /* DataSourceManager.m */; };
@@ -45,7 +46,6 @@
 		C1A5D418140B6AFA00CA9BD8 /* IncidentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A5D3E3140B6AFA00CA9BD8 /* IncidentViewController.m */; };
 		C1A5D419140B6AFA00CA9BD8 /* IncidentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1A5D3E4140B6AFA00CA9BD8 /* IncidentViewController.xib */; };
 		C1A5D41A140B6AFA00CA9BD8 /* LoginCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A5D3E7140B6AFA00CA9BD8 /* LoginCheckBox.m */; };
-		C1A5D41B140B6AFA00CA9BD8 /* LoginUserData.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A5D3E9140B6AFA00CA9BD8 /* LoginUserData.m */; };
 		C1A5D41C140B6AFA00CA9BD8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A5D3EB140B6AFA00CA9BD8 /* LoginViewController.m */; };
 		C1A5D41D140B6AFA00CA9BD8 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1A5D3EC140B6AFA00CA9BD8 /* LoginViewController.xib */; };
 		C1A5D41F140B6AFA00CA9BD8 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C1A5D3F1140B6AFA00CA9BD8 /* MBProgressHUD.m */; };
@@ -119,6 +119,8 @@
 		C1064FB7140DF2CB007669E8 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		C11725F4141C5989006DF130 /* DashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashboardViewController.h; sourceTree = "<group>"; };
 		C11725F5141C5989006DF130 /* DashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashboardViewController.m; sourceTree = "<group>"; };
+		C1906CFD1421A610002A0813 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		C1906CFE1421A610002A0813 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		C19259621414648C006440F6 /* Combobox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Combobox.h; sourceTree = "<group>"; };
 		C19259631414648C006440F6 /* Combobox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Combobox.m; sourceTree = "<group>"; };
 		C1952C4B14207987006320A0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -146,8 +148,6 @@
 		C1A5D3E4140B6AFA00CA9BD8 /* IncidentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncidentViewController.xib; sourceTree = "<group>"; };
 		C1A5D3E6140B6AFA00CA9BD8 /* LoginCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginCheckBox.h; sourceTree = "<group>"; };
 		C1A5D3E7140B6AFA00CA9BD8 /* LoginCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCheckBox.m; sourceTree = "<group>"; };
-		C1A5D3E8140B6AFA00CA9BD8 /* LoginUserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginUserData.h; sourceTree = "<group>"; };
-		C1A5D3E9140B6AFA00CA9BD8 /* LoginUserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginUserData.m; sourceTree = "<group>"; };
 		C1A5D3EA140B6AFA00CA9BD8 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		C1A5D3EB140B6AFA00CA9BD8 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		C1A5D3EC140B6AFA00CA9BD8 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -403,8 +403,6 @@
 			children = (
 				C1A5D3E6140B6AFA00CA9BD8 /* LoginCheckBox.h */,
 				C1A5D3E7140B6AFA00CA9BD8 /* LoginCheckBox.m */,
-				C1A5D3E8140B6AFA00CA9BD8 /* LoginUserData.h */,
-				C1A5D3E9140B6AFA00CA9BD8 /* LoginUserData.m */,
 				C1A5D3EA140B6AFA00CA9BD8 /* LoginViewController.h */,
 				C1A5D3EB140B6AFA00CA9BD8 /* LoginViewController.m */,
 				C1A5D3EC140B6AFA00CA9BD8 /* LoginViewController.xib */,
@@ -460,6 +458,8 @@
 				C1A5D469140B6F5200CA9BD8 /* Constants.h */,
 				C1A5D466140B6F4A00CA9BD8 /* CommonFuns.h */,
 				C1A5D467140B6F4A00CA9BD8 /* CommonFuns.m */,
+				C1906CFD1421A610002A0813 /* UserInfo.h */,
+				C1906CFE1421A610002A0813 /* UserInfo.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -578,7 +578,6 @@
 				C1A5D416140B6AFA00CA9BD8 /* IncidentResultViewController.m in Sources */,
 				C1A5D418140B6AFA00CA9BD8 /* IncidentViewController.m in Sources */,
 				C1A5D41A140B6AFA00CA9BD8 /* LoginCheckBox.m in Sources */,
-				C1A5D41B140B6AFA00CA9BD8 /* LoginUserData.m in Sources */,
 				C1A5D41C140B6AFA00CA9BD8 /* LoginViewController.m in Sources */,
 				C1A5D41F140B6AFA00CA9BD8 /* MBProgressHUD.m in Sources */,
 				C1A5D420140B6AFA00CA9BD8 /* SettingViewController.m in Sources */,
@@ -606,6 +605,7 @@
 				C19259641414648C006440F6 /* Combobox.m in Sources */,
 				C11725F6141C5989006DF130 /* DashboardViewController.m in Sources */,
 				C1004B3D141C8E8F00808AA0 /* SelectListViewController.m in Sources */,
+				C1906CFF1421A610002A0813 /* UserInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
